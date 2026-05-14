@@ -3,7 +3,7 @@ import React from "react";
 import { CgSpinner } from "react-icons/cg";
 import styles from "@/styles/button.module.scss";
 
-export type ButtonVariant = "primary" | "secondary"
+export type ButtonVariant = "primary" | "secondary" | "red" | "outlineSlim"
 export type ButtonSize = "sm" | "md" | "lg" | "xl"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -21,8 +21,9 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles: Record<ButtonVariant, string> = {
     primary: styles.button,
-    secondary: styles.buttonOutline
-
+    secondary: styles.buttonOutline,
+    red: styles.buttonOutlineRed,
+    outlineSlim: styles.buttonOutlineSm
 };
 
 
@@ -57,6 +58,7 @@ export const MainButton = React.forwardRef<HTMLButtonElement, ButtonProps>(funct
 
     return (
         <button ref={ref} type={props.type ?? 'button'} {...props} className={combinedClassName}>
+
             {loading ? (
                 <>
                     <CgSpinner size={12} className='mr-2 h-4 w-4 animate-spin' />

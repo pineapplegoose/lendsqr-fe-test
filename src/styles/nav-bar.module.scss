@@ -1,9 +1,12 @@
 .nav {
 	display: flex;
 	justify-content: space-between;
+	position: fixed;
+	inset-inline: 0;
 	padding-block: 30px;
 	padding-inline: 35px;
 	background: #ffffff;
+	z-index: 2;
 	div {
 		display: flex;
 		align-items: center;

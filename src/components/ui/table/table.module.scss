@@ -1,0 +1,92 @@
+.table-container {
+	height: 100%;
+	width: 100%;
+	margin-block: 40px;
+	border-radius: 8px;
+	padding-block: 8px;
+	background-color: white;
+}
+
+.tableContainer {
+	height: 100%;
+	width: 100%;
+}
+
+.tableHeader {
+	background: white;
+	border-radius: 999px;
+}
+
+.tableHead {
+	font-weight: 600 !important;
+	color: #545f7d !important;
+}
+
+.tableRow {
+	&[data-state="selected"] {
+		background: #f1fcf6;
+	}
+}
+
+.tableCell {
+	color: #545f7d !important;
+}
+
+.skeleton {
+	height: 2rem;
+	width: 100%;
+}
+
+.emptyState {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+}
+
+.emptyIconWrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.emptyFallbackIcon {
+	background: var(--primary-gold);
+}
+
+.emptyTextWrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+}
+
+.emptyTitle {
+	font-size: 1.25rem;
+	font-weight: 700;
+	color: #303030;
+}
+
+.emptyDescription {
+	font-size: 0.875rem;
+	font-weight: 500;
+	color: #6a6c88;
+	text-align: center;
+}
+
+.paginationWrapper {
+	margin-top: 1.5rem;
+	padding-inline: 1rem;
+
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 1rem;
+
+	@media (max-width: 640px) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

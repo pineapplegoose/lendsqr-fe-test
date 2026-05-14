@@ -1,0 +1,42 @@
+.navButton {
+	font-size: 6px;
+	color: var(--button-primary);
+	font-weight: 500;
+	display: flex;
+	align-items: center;
+	border: none;
+	background-color: #213f7d1a;
+	padding: 0;
+	size: 24px;
+}
+
+.pageButton {
+	width: 34px;
+	height: 34px;
+	min-width: 34px;
+
+	border-radius: 0.5rem;
+
+	font-size: 13px;
+	font-weight: 500;
+
+	transition:
+		background-color 0.2s ease,
+		color 0.2s ease;
+}
+
+.active {
+	background: none;
+	color: #545f7d;
+}
+
+.inactive {
+	background: transparent;
+	opacity: 0.6;
+	color: #545f7d;
+	font-weight: 400;
+
+	&:hover {
+		background: #f2f4f7;
+	}
+}
