@@ -1,0 +1,26 @@
+.nav {
+	display: flex;
+	justify-content: space-between;
+	padding-block: 30px;
+	padding-inline: 35px;
+	background: #ffffff;
+	div {
+		display: flex;
+		align-items: center;
+	}
+	.logo {
+		width: 144px;
+		object-fit: contain;
+		margin-right: 148px;
+	}
+	.user-setting {
+		gap: 20px;
+		color: #213f7d;
+		align-items: center;
+		margin-right: 25px;
+		a {
+			color: #213f7d;
+			text-decoration-line: underline;
+		}
+	}
+}

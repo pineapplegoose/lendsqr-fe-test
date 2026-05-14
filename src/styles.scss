@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+$primary: #fbfbfb;
+$secondary: #545f7d;
+html {
+	body {
+		background: $primary;
+		color: $secondary;
+		font-family: "Work Sans", sans-serif;
+	}
+}
+:root {
+	--background: #fbfbfb;
+	--foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+	:root {
+		--background: #fbfbfb;
+		--foreground: #171717;
+	}
+}
