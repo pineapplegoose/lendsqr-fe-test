@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Flex, Image } from "@chakra-ui/react";
 import Logo from '@/assets/logos/full-logo.svg'
 import LoginHeroImage from '@/assets/images/auth-page-img.png'
@@ -15,7 +15,7 @@ interface LoginFormValues {
 }
 
 export default function Login() {
-    const { control, handleSubmit } = useForm<LoginFormValues>()
+    const { control, handleSubmit, reset } = useForm<LoginFormValues>()
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
     const [error, setError] = useState<string | null>(null)
@@ -24,6 +24,12 @@ export default function Login() {
     if (isAuthenticated()) {
         return <Navigate to="/dashboard/users" replace />
     }
+    useEffect(() => {
+        reset({
+            email: 'Carolanne_Reynolds96@yahoo.com',
+            password: 'uMA3p15vmmlbWHU'
+        })
+    }, [])
 
     const onSubmit = async (data: LoginFormValues) => {
         setLoading(true)
