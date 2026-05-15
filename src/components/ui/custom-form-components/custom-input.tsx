@@ -97,7 +97,7 @@ export function CustomInput<T extends FieldValues>({
                 onKeyDown={onKeyDown}
                 disabled={disabled}
                 placeholder={placeholder}
-                color={'black'}
+                color={'#545F7D'}
                 bg={readOnly ? '#F9FAFB' : 'white'}
                 p={3}
                 h={height}
@@ -112,6 +112,7 @@ export function CustomInput<T extends FieldValues>({
                 _focus={{
                     border: '2px solid #545F7D26'
                 }}
+
             />
             {fieldState.error?.message && <Field.ErrorText>{fieldState.error.message}</Field.ErrorText>}
         </Field.Root>

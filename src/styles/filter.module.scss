@@ -1,0 +1,14 @@
+.filter-container {
+	background-color: white;
+	width: 270px;
+	padding: 20px;
+	border-radius: 4px;
+	border: 1px solid #545f7d24;
+	box-shadow: 3px 5px 20px 0px #0000000a;
+
+	form {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+	}
+}

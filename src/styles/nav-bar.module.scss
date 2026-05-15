@@ -1,29 +1,90 @@
 .nav {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	position: fixed;
 	inset-inline: 0;
-	padding-block: 30px;
+	padding-block: 20px;
 	padding-inline: 35px;
 	background: #ffffff;
-	z-index: 2;
-	div {
+	box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+	z-index: 30;
+
+	> div {
 		display: flex;
 		align-items: center;
 	}
+
 	.logo {
 		width: 144px;
 		object-fit: contain;
 		margin-right: 148px;
+
+		@media (max-width: 1024px) {
+			margin-right: 0;
+			width: 120px;
+		}
+
+		@media (max-width: 480px) {
+			width: 100px;
+		}
 	}
+
+	.hamburger {
+		display: none;
+		background: none;
+		border: none;
+		cursor: pointer;
+		padding: 6px;
+		color: #213f7d;
+		margin-right: 16px;
+		border-radius: 6px;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+
+		&:hover { background: #f0f0f0; }
+
+		@media (max-width: 1024px) {
+			display: flex;
+		}
+	}
+
+	.search-wrapper {
+		@media (max-width: 768px) {
+			display: none;
+		}
+	}
+
 	.user-setting {
 		gap: 20px;
 		color: #213f7d;
 		align-items: center;
 		margin-right: 25px;
+
+		@media (max-width: 768px) {
+			gap: 12px;
+			margin-right: 0;
+		}
+
 		a {
 			color: #213f7d;
 			text-decoration-line: underline;
+
+			@media (max-width: 768px) {
+				display: none;
+			}
 		}
+	}
+
+	.user-name {
+		@media (max-width: 480px) {
+			display: none;
+		}
+	}
+
+	@media (max-width: 768px) {
+		padding-inline: 16px;
+		padding-block: 14px;
 	}
 }

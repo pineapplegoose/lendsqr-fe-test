@@ -1,19 +1,20 @@
-.table-container {
-	height: 100%;
+.tableScroll {
 	width: 100%;
-	margin-block: 40px;
-	border-radius: 8px;
-	padding-block: 8px;
-	background-color: white;
+	overflow-x: auto;
+	background-color: transparent;
+	-webkit-overflow-scrolling: touch;
 }
 
 .tableContainer {
 	height: 100%;
 	width: 100%;
+	margin-block: 40px;
+	border-radius: 8px;
+	padding-block: 8px;
+	background-color: transparent;
 }
 
 .tableHeader {
-	background: white;
 	border-radius: 999px;
 }
 
@@ -79,6 +80,7 @@
 .paginationWrapper {
 	margin-top: 1.5rem;
 	padding-inline: 1rem;
+	background-color: transparent;
 
 	display: flex;
 	align-items: center;

@@ -21,6 +21,9 @@
 		font-size: 14px;
 		border-width: 1px;
 	}
+	@media screen and (max-width: 768px) {
+		font-size: 12px;
+	}
 }
 
 .button:hover {
@@ -32,6 +35,11 @@
 	color: #39cdcc;
 	border: 2px solid #39cdcc;
 }
+.buttonOutlines {
+	background-color: transparent;
+	color: #545f7d;
+	border: 2px solid #545f7d;
+}
 
 .buttonOutlineRed {
 	background-color: transparent;
@@ -40,6 +48,9 @@
 	height: 40px;
 	font-size: 14px;
 	letter-spacing: 10%;
+	@media screen and (max-width: 768px) {
+		font-size: 12px;
+	}
 }
 
 .buttonOutlineSm {
@@ -49,4 +60,7 @@
 	height: 40px;
 	font-size: 14px;
 	letter-spacing: 4%;
+	@media screen and (max-width: 768px) {
+		font-size: 12px;
+	}
 }

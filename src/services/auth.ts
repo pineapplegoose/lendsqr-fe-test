@@ -1,5 +1,6 @@
 import http from "./https"
 import _ from "lodash"
+import { storeUserToken, clearAuthTokens, getUserToken } from "./cookies"
 
 interface LoginPayload {
 	email: string
@@ -45,6 +46,19 @@ export const getStoredCredentials = () => {
 export const clearStoredCredentials = () => {
 	localStorage.removeItem(REMEMBER_ME_KEY)
 }
+export const storeAuthSession = (email: string, rememberMe: boolean = false): void => {
+	storeUserToken(email, rememberMe)
+}
+
+export const isAuthenticated = (): boolean => {
+	return getUserToken() !== null
+}
+
+export const logout = (): void => {
+	clearAuthTokens()
+	clearStoredCredentials()
+}
+
 export const loginUser = async (payload: LoginPayload) => {
 	const res = await http.get<UserColumns[]>("/users")
 

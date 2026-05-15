@@ -67,6 +67,7 @@ export function Paginator({
             align="center"
             justify="center"
             gap={{ base: 2, lg: 4 }}
+            backgroundColor={'transparent'}
             mt={10}
             aria-label="Pagination"
         >
@@ -79,7 +80,7 @@ export function Paginator({
                 <LuChevronLeft size={6} />
             </Button>
 
-            <HStack gap={{ base: 2, lg: 4 }}>
+            <HStack backgroundColor={'transparent'} gap={{ base: 2, lg: 4 }}>
                 {pages.map((p) => (
                     <Button
                         key={p}

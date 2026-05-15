@@ -3,7 +3,7 @@ import React from "react";
 import { CgSpinner } from "react-icons/cg";
 import styles from "@/styles/button.module.scss";
 
-export type ButtonVariant = "primary" | "secondary" | "red" | "outlineSlim"
+export type ButtonVariant = "primary" | "secondary" | "red" | "outlineSlim" | "outline";
 export type ButtonSize = "sm" | "md" | "lg" | "xl"
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -23,7 +23,8 @@ const variantStyles: Record<ButtonVariant, string> = {
     primary: styles.button,
     secondary: styles.buttonOutline,
     red: styles.buttonOutlineRed,
-    outlineSlim: styles.buttonOutlineSm
+    outlineSlim: styles.buttonOutlineSm,
+    outline: styles.buttonOutlines
 };
 
 

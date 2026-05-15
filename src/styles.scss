@@ -2,11 +2,15 @@
 
 $primary: #fbfbfb;
 $secondary: #545f7d;
+
 html {
+	background: $primary;
 	body {
-		background: $primary;
 		color: $secondary;
 		font-family: "Work Sans", sans-serif;
+		.main-page {
+			background-color: #fbfbfb;
+		}
 	}
 }
 :root {

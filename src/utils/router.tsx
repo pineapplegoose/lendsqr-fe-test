@@ -1,6 +1,7 @@
 import { lazy } from "react"
 import { Layout } from "@/utils/layout"
 import { Navigate } from "react-router"
+import { ProtectedRoute } from "@/components/common/protected-route"
 
 const Login = lazy(() => import("@/pages/login"))
 const HomePage = lazy(() => import("@/pages/home-page"))
@@ -14,16 +15,20 @@ const routes = [
         children: [
             { index: true, element: <Login /> },
             {
-                path: "dashboard", children: [
-                    { index: true, element: <HomePage /> },
-                    { path: "users", element: <Users /> },
-                    { path: "users/:id", element: <UserDetails /> },
-
+                element: <ProtectedRoute />,
+                children: [
+                    {
+                        path: "dashboard",
+                        children: [
+                            { index: true, element: <HomePage /> },
+                            { path: "users", element: <Users /> },
+                            { path: "users/:id", element: <UserDetails /> },
+                        ]
+                    },
                 ]
-            },
+            }
         ],
     },
     { path: "*", element: <Navigate to="/" /> },
 ]
 export default routes
-

@@ -17,9 +17,9 @@ import {
 } from './index';
 
 import { Paginator } from './paginator';
-import { Box, Skeleton, Text } from '@chakra-ui/react';
-import Image from 'next/image';
+import { Box, Flex, HStack, Skeleton, Text } from '@chakra-ui/react';
 import styles from './table.module.scss';
+import { CgChevronDown } from 'react-icons/cg';
 
 export type EmptyDetails = {
     icon: string;
@@ -98,106 +98,109 @@ export function DataTable<TData, TValue>({
             }}
             className={styles.tableContainer}
         >
-            <Table>
-                <TableHeader className={styles.tableHeader}>
-                    {table.getHeaderGroups().map((headerGroup) => (
-                        <TableRow key={tableName + headerGroup.id}>
-                            {headerGroup.headers.map((header) => (
-                                <TableHead
-                                    key={tableName + header.id}
-                                    className={styles.tableHead}
-                                >
-                                    {!header.isPlaceholder &&
-                                        flexRender(
-                                            header.column.columnDef.header,
-                                            header.getContext()
-                                        )}
-                                </TableHead>
-                            ))}
-                        </TableRow>
-                    ))}
-                </TableHeader>
-
-                <TableBody>
-                    {loading ? (
-                        skeletonData.map((_, rowIndex) => (
-                            <TableRow key={rowIndex}>
-                                {columns.map((_, cellIndex) => (
-                                    <TableCell key={cellIndex}>
-                                        <Skeleton className={styles.skeleton} />
-                                    </TableCell>
+            <div className={styles.tableScroll}>
+                <Table>
+                    <TableHeader className={styles.tableHeader}>
+                        {table.getHeaderGroups().map((headerGroup) => (
+                            <TableRow key={tableName + headerGroup.id}>
+                                {headerGroup.headers.map((header) => (
+                                    <TableHead
+                                        key={tableName + header.id}
+                                        className={styles.tableHead}
+                                    >
+                                        {!header.isPlaceholder &&
+                                            flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            )}
+                                    </TableHead>
                                 ))}
                             </TableRow>
-                        ))
-                    ) : (
-                        <>
-                            {isDataEmpty ? (
-                                <TableEmpty colSpan={columns.length}>
-                                    <div className={styles.emptyState}>
-                                        <div className={styles.emptyIconWrapper}>
-                                            {emptyDetails?.icon ? (
-                                                <Image
-                                                    src={emptyDetails.icon}
-                                                    alt=""
-                                                />
-                                            ) : (
-                                                <Box
-                                                    rounded={'full'}
-                                                    className={styles.emptyFallbackIcon}
-                                                    boxSize={'40px'}
-                                                />
-                                            )}
-                                        </div>
+                        ))}
+                    </TableHeader>
 
-                                        <div className={styles.emptyTextWrapper}>
-                                            <h4 className={styles.emptyTitle}>
-                                                {emptyDetails?.title ||
-                                                    `No ${tableName} found`}
-                                            </h4>
-
-                                            <p className={styles.emptyDescription}>
-                                                {emptyDetails?.description ||
-                                                    `No ${tableName} found`}
-                                            </p>
-                                        </div>
-                                    </div>
-                                </TableEmpty>
-                            ) : (
-                                table.getRowModel().rows.map((row) => (
-                                    <TableRow
-                                        key={row.id}
-                                        onClick={() =>
-                                            onRowClick?.(row.original)
-                                        }
-                                        data-state={
-                                            row.getIsSelected() && 'selected'
-                                        }
-                                        className={styles.tableRow}
-                                    >
-                                        {row.getVisibleCells().map((cell) => (
-                                            <TableCell
-                                                key={tableName + cell.id}
-                                                className={styles.tableCell}
-                                            >
-                                                {flexRender(
-                                                    cell.column.columnDef.cell,
-                                                    cell.getContext()
+                    <TableBody>
+                        {loading ? (
+                            skeletonData.map((_, rowIndex) => (
+                                <TableRow key={rowIndex}>
+                                    {columns.map((_, cellIndex) => (
+                                        <TableCell key={cellIndex}>
+                                            <Skeleton className={styles.skeleton} />
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            ))
+                        ) : (
+                            <>
+                                {isDataEmpty ? (
+                                    <TableEmpty colSpan={columns.length}>
+                                        <div className={styles.emptyState}>
+                                            <div className={styles.emptyIconWrapper}>
+                                                {emptyDetails?.icon ? (
+                                                    <img src={emptyDetails.icon} alt="" />
+                                                ) : (
+                                                    <Box
+                                                        rounded={'full'}
+                                                        className={styles.emptyFallbackIcon}
+                                                        boxSize={'40px'}
+                                                    />
                                                 )}
-                                            </TableCell>
-                                        ))}
-                                    </TableRow>
-                                ))
-                            )}
-                        </>
-                    )}
-                </TableBody>
-            </Table>
+                                            </div>
+
+                                            <div className={styles.emptyTextWrapper}>
+                                                <h4 className={styles.emptyTitle}>
+                                                    {emptyDetails?.title ||
+                                                        `No ${tableName} found`}
+                                                </h4>
+
+                                                <p className={styles.emptyDescription}>
+                                                    {emptyDetails?.description ||
+                                                        `No ${tableName} found`}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </TableEmpty>
+                                ) : (
+                                    table.getRowModel().rows.map((row) => (
+                                        <TableRow
+                                            key={row.id}
+                                            onClick={() =>
+                                                onRowClick?.(row.original)
+                                            }
+                                            data-state={
+                                                row.getIsSelected() && 'selected'
+                                            }
+                                            className={styles.tableRow}
+                                        >
+                                            {row.getVisibleCells().map((cell) => (
+                                                <TableCell
+                                                    key={tableName + cell.id}
+                                                    className={styles.tableCell}
+                                                >
+                                                    {flexRender(
+                                                        cell.column.columnDef.cell,
+                                                        cell.getContext()
+                                                    )}
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    ))
+                                )}
+                            </>
+                        )}
+                    </TableBody>
+                </Table>
+            </div>
 
             <div className={styles.paginationWrapper}>
-                <Text fontSize={'14px'}>
-                    Showing 1{data?.indexOf(currentData[currentData.length])} out of {data?.length}{' '}
-                    {tableName}
-                </Text>
+                <Flex align={'center'}>
+                    <Text fontSize={'14px'}>
+                        Showing
+                    </Text>
+                    <HStack p={1} px={2} fontSize={'14px'} h={'30px'} bg={'#213F7D1A'} mx={2}>{data?.findIndex(currentData => currentData === tableData[0])}<CgChevronDown /></HStack>  <Text fontSize={'14px'}>out of {data?.length}{' '}
+                        {tableName}
+                    </Text>
+                </Flex>
 
                 <Paginator
                     current={currentPage}

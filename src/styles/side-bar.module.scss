@@ -1,9 +1,16 @@
 div {
-	color: #213f7d;
+	background-color: white;
 	.subheader-text {
 		padding-inline: 30px;
 		font-size: 14px;
 		text-transform: uppercase;
 		margin-block: 10px;
+	}
+	.tabs {
+		opacity: 60%;
+		color: #213f7d;
+		&:hover {
+			background: #39cdcc1a;
+		}
 	}
 }
