@@ -141,7 +141,7 @@ export const useColumns = ({ users, onFilter, onReset, onBlacklist, onActivate }
             cell: ({ row }) => (
                 <div style={{ background: 'transparent' }} onClick={(e) => e.stopPropagation()}>
                     <Menu.Root>
-                        <Menu.Trigger bg={'red'}>
+                        <Menu.Trigger bg={'transparent'}>
                             <LuEllipsisVertical size={18} cursor={'pointer'} />
                         </Menu.Trigger>
                         <Portal>

@@ -77,16 +77,9 @@
 	line-height: 0.75rem;
 	font-weight: 600;
 	color: #545f7d;
-	* {
-		background-color: white;
-	}
-
 	@media (min-width: 1024px) {
 		font-size: 0.875rem;
 		line-height: 18px;
-		* {
-			background-color: white;
-		}
 	}
 
 	&:has([role="checkbox"]) {
@@ -105,10 +98,6 @@
 	font-size: 16px;
 	line-height: 1.25rem;
 	color: #545f7d;
-	* {
-		background-color: white;
-	}
-
 	@media (min-width: 1024px) {
 		height: 60px;
 		font-size: 0.875rem;

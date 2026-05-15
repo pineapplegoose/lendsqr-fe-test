@@ -1,4 +1,4 @@
-import { Popover, type PopoverRootProps } from "@chakra-ui/react"
+import { Popover, Portal, type PopoverRootProps } from "@chakra-ui/react"
 import { MainButton, type ButtonVariant } from "./button";
 import React from "react";
 
@@ -35,11 +35,13 @@ export const Modal = ({
                     {triggerContent}
                 </MainButton>}
             </Popover.Trigger>
-            <Popover.Positioner >
-                <Popover.Content w={'fit'} bg={'white'} rounded={'12px'} shadow={'xs'} className={` ${className ?? ''}`}>
-                    {modalContent}
-                </Popover.Content>
-            </Popover.Positioner>
+            <Portal>
+                <Popover.Positioner>
+                    <Popover.Content w={'fit'} bg={'white'} rounded={'12px'} shadow={'xs'} className={` ${className ?? ''}`}>
+                        {modalContent}
+                    </Popover.Content>
+                </Popover.Positioner>
+            </Portal>
         </Popover.Root>
     )
 }
