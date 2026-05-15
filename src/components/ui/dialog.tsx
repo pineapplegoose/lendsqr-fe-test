@@ -1,7 +1,6 @@
-import { Dialog, Popover, type DialogRootProps, type PopoverRootProps } from "@chakra-ui/react"
+import { Popover, type PopoverRootProps } from "@chakra-ui/react"
 import { MainButton, type ButtonVariant } from "./button";
 import React from "react";
-import { LuX } from "react-icons/lu";
 
 type ModalProps = {
     className?: string;
