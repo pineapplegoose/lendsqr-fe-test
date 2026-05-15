@@ -38,6 +38,7 @@ export const MainButton = React.forwardRef<HTMLButtonElement, ButtonProps>(funct
     loading,
     loadingText,
     fullWidth,
+    disabled,
     ...props
 }, ref) {
     const base = styles.button;
@@ -58,7 +59,7 @@ export const MainButton = React.forwardRef<HTMLButtonElement, ButtonProps>(funct
             : null;
 
     return (
-        <button ref={ref} type={props.type ?? 'button'} {...props} className={combinedClassName}>
+        <button ref={ref} disabled={disabled} type={props.type ?? 'button'} {...props} className={combinedClassName}>
 
             {loading ? (
                 <>

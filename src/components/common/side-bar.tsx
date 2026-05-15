@@ -137,7 +137,7 @@ export const Sidebar = ({ onClose, isOpen }: { onClose?: () => void; isOpen?: bo
                         px={"30px"}
                         onClick={handleLogout}
                     >
-                        <Image alt="logout" src={'/icons/sign-out.svg'} /> Logout
+                        <Image alt="logout" src={'/icons/user-x.svg'} /> Logout
                     </Tabs.Trigger>
                 </div>
             </Tabs.List>

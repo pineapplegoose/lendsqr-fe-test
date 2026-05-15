@@ -28,17 +28,30 @@
 
 .button:hover {
 	background-color: #2ea8a8;
+	color: white;
 }
 
 .buttonOutline {
 	background-color: transparent;
 	color: #39cdcc;
 	border: 2px solid #39cdcc;
+	&:disabled {
+		background-color: transparent;
+		color: gray;
+		cursor: not-allowed;
+		border: 1px solid gray;
+	}
 }
 .buttonOutlines {
 	background-color: transparent;
 	color: #545f7d;
 	border: 2px solid #545f7d;
+	&:disabled {
+		background-color: transparent;
+		color: gray;
+		cursor: not-allowed;
+		border: 1px solid gray;
+	}
 }
 
 .buttonOutlineRed {
@@ -51,6 +64,12 @@
 	@media screen and (max-width: 768px) {
 		font-size: 12px;
 	}
+	&:disabled {
+		background-color: transparent;
+		color: gray;
+		cursor: not-allowed;
+		border: 1px solid gray;
+	}
 }
 
 .buttonOutlineSm {
@@ -60,6 +79,12 @@
 	height: 40px;
 	font-size: 14px;
 	letter-spacing: 4%;
+	&:disabled {
+		background-color: transparent;
+		color: gray;
+		cursor: not-allowed;
+		border: 1px solid gray;
+	}
 	@media screen and (max-width: 768px) {
 		font-size: 12px;
 	}

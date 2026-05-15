@@ -48,10 +48,22 @@ export default function Users() {
         })
     }, [users, filters])
 
+    const handleBlacklist = async (id: string) => {
+        await http.put(`/users/${id}`, { status: 'application' })
+        setUsers(prev => prev.map(u => u.id === id ? { ...u, status: 'application' } : u))
+    }
+
+    const handleActivate = async (id: string) => {
+        await http.put(`/users/${id}`, { status: 'video' })
+        setUsers(prev => prev.map(u => u.id === id ? { ...u, status: 'video' } : u))
+    }
+
     const columns = useColumns({
         users,
         onFilter: setFilters,
         onReset: () => setFilters({}),
+        onBlacklist: handleBlacklist,
+        onActivate: handleActivate,
     })
 
     return (

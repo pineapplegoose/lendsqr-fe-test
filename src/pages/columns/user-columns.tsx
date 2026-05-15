@@ -5,6 +5,7 @@ import type { ColumnDef } from "@tanstack/react-table";
 import { useState } from "react";
 import { LuEllipsisVertical, LuEye, LuUserCheck, LuUserX } from "react-icons/lu";
 import { MdFilterList } from "react-icons/md";
+import { useNavigate } from "react-router";
 
 export interface UserColumns {
     organization: string;
@@ -46,9 +47,11 @@ interface UseColumnsOptions {
     users: UserColumns[]
     onFilter: (values: FilterValues) => void
     onReset: () => void
+    onBlacklist?: (id: string) => Promise<void>
+    onActivate?: (id: string) => Promise<void>
 }
 
-export const useColumns = ({ users, onFilter, onReset }: UseColumnsOptions): ColumnDef<UserColumns, any>[] => {
+export const useColumns = ({ users, onFilter, onReset, onBlacklist, onActivate }: UseColumnsOptions): ColumnDef<UserColumns, any>[] => {
     const formatDate = (dateStr: string | undefined) => {
         if (!dateStr) return null
         const date = new Date(dateStr)
@@ -57,6 +60,18 @@ export const useColumns = ({ users, onFilter, onReset }: UseColumnsOptions): Col
             month: "long",
             year: "numeric",
         })
+    }
+    const navigate = useNavigate()
+    const [loadingId, setLoadingId] = useState<string | null>(null)
+
+    const handleBlacklist = async (id: string) => {
+        setLoadingId(id)
+        try { await onBlacklist?.(id) } finally { setLoadingId(null) }
+    }
+
+    const handleActivate = async (id: string) => {
+        setLoadingId(id)
+        try { await onActivate?.(id) } finally { setLoadingId(null) }
     }
 
     const formatDatetoTime = (dateStr: string | undefined) => {
@@ -123,7 +138,7 @@ export const useColumns = ({ users, onFilter, onReset }: UseColumnsOptions): Col
         {
             accessorKey: 'actions',
             header: '',
-            cell: () => (
+            cell: ({ row }) => (
                 <div style={{ background: 'transparent' }} onClick={(e) => e.stopPropagation()}>
                     <Menu.Root>
                         <Menu.Trigger bg={'red'}>
@@ -132,13 +147,31 @@ export const useColumns = ({ users, onFilter, onReset }: UseColumnsOptions): Col
                         <Portal>
                             <Menu.Positioner shadowColor={'white'} shadow={'none'}>
                                 <Menu.Content bg={'white'} h={'130px'} fontWeight={'medium'} color={'#545F7D'}>
-                                    <Menu.Item value="view" h={'33%'} color={'#545F7D'} px={4} _hover={{ bg: 'gray.200' }}>
+                                    <Menu.Item value="view" h={'33%'} color={'#545F7D'} px={4} onClick={() => navigate(`/dashboard/users/${row.original.id
+
+                                        }`, { state: { user: row.original } })} _hover={{ bg: 'gray.200' }}>
                                         <LuEye /><span> View Details</span>
                                     </Menu.Item>
-                                    <Menu.Item value="delete" h={'33%'} color={'#545F7D'} px={4} _hover={{ bg: 'gray.200' }}>
+                                    <Menu.Item
+                                        value="blacklist"
+                                        h={'33%'}
+                                        px={4}
+                                        _hover={{ bg: 'gray.200' }}
+                                        disabled={row.original.status === 'application' || loadingId === row.original.id}
+                                        color={row.original.status === 'application' ? '#ccc' : '#545F7D'}
+                                        onClick={() => handleBlacklist(row.original.id)}
+                                    >
                                         <LuUserX /><span>Blacklist User</span>
                                     </Menu.Item>
-                                    <Menu.Item value="edit" h={'33%'} color={'#545F7D'} px={4} _hover={{ bg: 'gray.200' }}>
+                                    <Menu.Item
+                                        value="activate"
+                                        h={'33%'}
+                                        px={4}
+                                        _hover={{ bg: 'gray.200' }}
+                                        disabled={['video', 'text'].includes(row.original.status) || loadingId === row.original.id}
+                                        color={['video', 'text'].includes(row.original.status) ? '#ccc' : '#545F7D'}
+                                        onClick={() => handleActivate(row.original.id)}
+                                    >
                                         <LuUserCheck /><span>Activate User</span>
                                     </Menu.Item>
                                 </Menu.Content>

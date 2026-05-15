@@ -31,7 +31,29 @@ interface User {
 export default function UserDetails() {
     const { id } = useParams();
     const [user, setUser] = useState<User>()
+    const [isBlacklisting, setIsBlacklisting] = useState(false)
+    const [isActivating, setIsActivating] = useState(false)
     const isMobile = window.innerWidth < 768
+
+    const handleBlacklist = async () => {
+        setIsBlacklisting(true)
+        try {
+            await http.put(`/users/${id}`, { status: 'application' })
+            setUser(prev => prev ? { ...prev, status: 'application' } : prev)
+        } finally {
+            setIsBlacklisting(false)
+        }
+    }
+
+    const handleActivate = async () => {
+        setIsActivating(true)
+        try {
+            await http.put(`/users/${id}`, { status: 'video' })
+            setUser(prev => prev ? { ...prev, status: 'video' } : prev)
+        } finally {
+            setIsActivating(false)
+        }
+    }
 
     const Info = {
         personalInfo: [
@@ -84,8 +106,22 @@ export default function UserDetails() {
             <HStack align={'center'} className={styles['header']}>
                 <h2>User Details</h2>
                 <Flex gap="16px" w={{ base: '100%', md: '370px' }}>
-                    <MainButton size='lg' variant='red'>Blacklist User</MainButton>
-                    <MainButton size='lg' variant='outlineSlim'>Activate User</MainButton>
+                    <MainButton
+                        size='lg'
+                        variant='red'
+                        onClick={handleBlacklist}
+                        loading={isBlacklisting}
+                        loadingText='Blacklisting...'
+                        disabled={user?.status === 'application'}
+                    >Blacklist User</MainButton>
+                    <MainButton
+                        size='lg'
+                        variant='outlineSlim'
+                        onClick={handleActivate}
+                        loading={isActivating}
+                        loadingText='Activating...'
+                        disabled={user?.status === 'video' || user?.status === 'text'}
+                    >Activate User</MainButton>
                 </Flex>
             </HStack>
 
