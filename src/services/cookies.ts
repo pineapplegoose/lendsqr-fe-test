@@ -6,15 +6,18 @@ const CookieApi = Cookies.withAttributes({
 })
 
 export const getUserToken = (): string | null => {
-	return CookieApi.get("x-auth-token") || null
+	return sessionStorage.getItem("x-auth-token") || CookieApi.get("x-auth-token") || null
 }
 
 export const storeUserToken = (
 	token: string,
 	persistToken: boolean = false,
 ): void => {
-	const options = persistToken ? { expires: 1 } : {}
-	CookieApi.set("x-auth-token", token, options)
+	if (persistToken) {
+		CookieApi.set("x-auth-token", token, { expires: 1 })
+	} else {
+		sessionStorage.setItem("x-auth-token", token)
+	}
 }
 
 export const getRefreshToken = (): string | null => {
@@ -30,6 +33,7 @@ export const storeRefreshToken = (
 }
 
 export const clearAuthTokens = (): void => {
+	sessionStorage.removeItem("x-auth-token")
 	CookieApi.remove("x-auth-token")
 	CookieApi.remove("x-refresh-token")
 }

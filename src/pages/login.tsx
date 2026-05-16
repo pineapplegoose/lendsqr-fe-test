@@ -6,8 +6,8 @@ import styles from '@/styles/login.module.scss'
 import { MainButton } from "@/components/ui/button";
 import { useForm } from "react-hook-form";
 import { CustomInput } from "@/components/ui/custom-form-components/custom-input";
-import { useNavigate, Navigate } from "react-router";
-import { loginUser, storeAuthSession, isAuthenticated } from "@/services/auth";
+import { useNavigate } from "react-router";
+import { loginUser, storeAuthSession } from "@/services/auth";
 
 interface LoginFormValues {
     email: string
@@ -21,9 +21,6 @@ export default function Login() {
     const [error, setError] = useState<string | null>(null)
     const [loading, setLoading] = useState(false)
 
-    if (isAuthenticated()) {
-        return <Navigate to="/dashboard/users" replace />
-    }
     useEffect(() => {
         reset({
             email: 'Carolanne_Reynolds96@yahoo.com',
