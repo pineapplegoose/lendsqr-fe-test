@@ -1,75 +1,119 @@
-# React + TypeScript + Vite
+# Lendsqr Frontend Engineer Assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A pixel-perfect implementation of the Lendsqr Admin Console built as part of the Lendsqr Frontend Engineer assessment.
 
-Currently, two official plugins are available:
+**Live App:** https://teniola-kalaro-lendsqr-fe-test.vercel.app
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## Pages
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+- **Login** — Email and password authentication with client-side validation
+- **Dashboard** — Summary stats and navigation
+- **Users** — Paginated table of 500 mock users with filtering and status indicators
+- **User Details** — Full user profile retrieved from localStorage
 
-Note: This will impact Vite dev & build performances.
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+| Tech | Reason |
+|------|--------|
+| React + TypeScript | Required by assessment. TypeScript used throughout for full type safety |
+| SCSS | Required by assessment. Modular, scoped styles per component |
+| Chakra UI | Used selectively for accessible primitives — all visual styling done in SCSS |
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## Getting Started
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Prerequisites
+- Node.js v18+
+- npm or yarn
+
+### Installation
+
+```bash
+# clone the repo
+git clone https://github.com/your-username/teniola-kalaro-lendsqr-fe-test.git
+
+# navigate into the project
+cd teniola-kalaro-lendsqr-fe-test
+
+# install dependencies
+npm install
+
+# start the dev server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+App runs on `http://localhost:3000`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Running Tests
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run test
 ```
+
+---
+
+## Project Structure
+
+```
+src/
+├── components/        # reusable UI components
+├── pages/             # one folder per page (Login, Dashboard, Users, UserDetails)
+├── types/             # shared TypeScript interfaces and types
+├── styles/            # global SCSS variables, mixins, and resets
+├── services/          # API calls and localStorage utilities
+└── utils/             # helper functions
+```
+
+---
+
+## Data & API
+
+Mock data was generated using [json-generator.com](https://json-generator.com) — 500 user records structured to match the fields in the Figma design.
+
+- Data is fetched on mount on the Users page
+- On row click, the selected user object is saved to `localStorage` keyed by user ID
+- The User Details page reads from `localStorage` — data persists on refresh and direct URL access
+
+---
+
+## Responsiveness
+
+All pages are fully mobile responsive:
+
+- Sidebar collapses to a hamburger menu on mobile
+- Stat cards stack vertically on smaller screens
+- Users table converts to a scrollable card layout on mobile
+
+---
+
+## Design Decisions
+
+- SCSS variables and mixins were set up from the start to match Figma design tokens — no hardcoded colour or spacing values
+- Chakra UI was used only where it added accessibility value (modals, tooltips) — never as a styling shortcut
+- All visual decisions follow the Figma design exactly with no intentional deviations
+
+---
+
+## Assessment Checklist
+
+- [x] Login page
+- [x] Dashboard page
+- [x] Users page with 500 mock records
+- [x] User Details page with localStorage
+- [x] Mobile responsive
+- [x] TypeScript throughout
+- [x] SCSS for styling
+- [x] Unit tests
+- [x] Deployed on Vercel
+
+---
+
+## Author
+
+**Teniola Kalaro**
+[LinkedIn](https://linkedin.com/in/teniola-kalaro) · [GitHub](https://github.com/pineapplegoose)
