@@ -10,7 +10,7 @@ A pixel-perfect implementation of the Lendsqr Admin Console built as part of the
 
 - **Login** — Email and password authentication with client-side validation
 - **Dashboard** — Summary stats and navigation
-- **Users** — Paginated table of 500 mock users with filtering and status indicators
+- **Users** — Paginated table of mock users with filtering and status indicators
 - **User Details** — Full user profile retrieved from localStorage
 
 ---
@@ -73,7 +73,7 @@ src/
 
 ## Data & API
 
-Mock data was generated using [json-generator.com](https://json-generator.com) — 500 user records structured to match the fields in the Figma design.
+Mock data was generated using [mockapi.io](https://mockapi.io) — user records structured to match the fields in the Figma design.
 
 - Data is fetched on mount on the Users page
 - On row click, the selected user object is saved to `localStorage` keyed by user ID
@@ -94,7 +94,7 @@ All pages are fully mobile responsive:
 ## Design Decisions
 
 - SCSS variables and mixins were set up from the start to match Figma design tokens — no hardcoded colour or spacing values
-- Chakra UI was used only where it added accessibility value (modals, tooltips) — never as a styling shortcut
+- Chakra UI was used only where it added accessibility value (modals, tooltips)
 - All visual decisions follow the Figma design exactly with no intentional deviations
 
 ---
@@ -103,7 +103,7 @@ All pages are fully mobile responsive:
 
 - [x] Login page
 - [x] Dashboard page
-- [x] Users page with 500 mock records
+- [x] Users page with mock records
 - [x] User Details page with localStorage
 - [x] Mobile responsive
 - [x] TypeScript throughout
